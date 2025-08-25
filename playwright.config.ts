@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const isCI = process.env.CI === 'true';
+
 export default defineConfig({
   projects: [
     {
@@ -12,7 +14,7 @@ export default defineConfig({
     }
   ],
   use: {
-    headless: false,
+    headless: isCI ? true : false,
     screenshot: 'on',
     trace: 'on',
   },
